@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<head>
+   <title>My Cool Savings Calculator: List of Queries</title>
+   <style>
+   td {
+      text-align: center;
+   }
+   </style>
+</head>
+<body>
+<h1>History of Queries</h1>
+<table>
+<tr>
+   <th>Initial Capital</th>
+   <th>Years</th>
+   <th>Rate</th>
+   <th>Final Capital</th>
+</tr>
+<br>
+{% for query in Queries %}
+<tr>
+   <td>{{query.initial_capital}}</td>
+   <td>{{query.number_of_years}}</td>
+   <td>{{query.interest_rate}}</td>
+   <td>{{query.final_capital}}</td>
+</tr>
+{% endfor %}
+</table>
+<br>
+<h3><a href="{% url 'savingscalculator:index' %}">Make new query</a></h3>
+</body>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<!-- HTML taken from http://savings-oliva.apps.devcloud.eecs.qmul.ac.uk/ -->
+<head>
+   <title>My Cool Savings Calculator</title>
+   <style>
+   h1 {
+      padding-bottom: 0em;
+      margin-bottom: 0em;
+   }
+   table {
+      padding-top: 0em;
+      margin-top: 0em;
+   }
+   </style>
+</head>
+<body>
+   <h1>Savings Calculator</h1>
+   <b style="color:#FF0000";>{{error}}</b>
+   <table>
+   <form method='POST'>
+   {% csrf_token %}
+   <tr>
+      <td><label>Initial Capital:</label>
+      {% if final > 0 %}
+      <td><input type='text' name='initial' value={{initial}}></input></td>
+      {% else %}
+      <td><input type='text' name='initial'></input></td>
+      {% endif %}
+   </tr>
+   <br>
+   <tr>
+      <td><label>Number of Years:</label>
+      {% if final > 0 %}
+      <td><input type='text' name='years' value={{years}}></input></td>
+      {% else %}
+      <td><input type='text' name='years' value='5'></input></td>
+      {% endif %}      
+   </tr>
+   <br>
+   <tr>
+      <td><label>Interest rate (annual):</label>
+      {% if final > 0 %}
+      <td><input type='text' name='interest' value={{interest}}></input></td>
+      {% else %}
+      <td><input type='text' name='interest' value='3.5'></input></td>
+      {% endif %}
+   </tr>
+   <br>
+   <tr>
+      <td></td>
+      <td><input type='submit'></input></td>
+   </tr>
+   </form>
+   </table>
+   <h2>Capital at the end of {{years}} years: {{final|floatformat:2}}</h2>
+<h3>Check previous queries <a href="{% url 'savingscalculator:queries' %}">here</a></h3>
+</body>
